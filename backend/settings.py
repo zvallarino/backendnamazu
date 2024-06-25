@@ -33,8 +33,11 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'accounts',
     'rest_framework',
+    'rest_framework.authtoken',  # for token authentication
     'corsheaders',
+    'products',
     'store',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -127,4 +130,17 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Allow all origins (for development purposes)
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Your frontend URL
+]
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",  # Your frontend URL
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# SESSION_COOKIE_SAMESITE = 'None'
+# SESSION_COOKIE_SECURE = True  # Use this in production with HTTPS
